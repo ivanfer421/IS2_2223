@@ -19,11 +19,17 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 		seguros = daoVehiculos;
 	}
 
-	public Cliente cliente(String dni) {
+	public Cliente cliente(String dni) throws OperacionNoValida {
+		if (clientes.cliente(dni) == null) {
+			throw new OperacionNoValida("No se existe ningun cliente con ese DNI");
+		}
 		return clientes.cliente(dni);
 	}
 
-	public Seguro seguro(String matricula) {
+	public Seguro seguro(String matricula) throws OperacionNoValida {
+		if (seguros.seguro(matricula) == null) {
+			throw new OperacionNoValida("No se existe ningun seguro con esa matricula");
+		}
 		return seguros.seguro(matricula);
 	}
 
