@@ -96,7 +96,17 @@ public class Cliente {
      * todos los seguros a su nombre
      */
     public double totalSeguros() {
-    	return 0;
+    	double precioAux = 0;
+    	double precioTotal = 0;
+    	for (int i = 0; i < seguros.size(); i++) {
+    		precioAux = seguros.get(i).precio();
+    		if (minusvalia == true) {
+    			precioAux = precioAux * 0.75;
+    		}
+    		precioTotal += precioAux;
+    	}
+    	
+    	return precioTotal;
     }
 
 }

@@ -4,6 +4,7 @@ package es.unican.is2.common;
 
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -93,7 +94,52 @@ public class Seguro {
      * @return
      */
     public double precio() {
-    	return 0;
+    	double precioAux = 0;
+    	if (cobertura == Cobertura.TERCEROS) {
+    		if (potencia >= INICIO_TRAMO_1 && potencia <= FIN_TRAMO_1) {
+    			precioAux = 400 + (400 * (1 - PORCENTAJE_TRAMO_1));
+    		} else if (potencia > FIN_TRAMO_1) {
+    			precioAux = 400 + (400 * (1 - PORCENTAJE_TRAMO_2));
+    		} else {
+    			precioAux += 400;
+    		}
+    		
+    		if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 1) {
+    			precioAux = precioAux * DESCUENTO_PRIMER_ANHO;
+    		} else if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 2) {
+    			precioAux = precioAux * DESCUENTO_SEGUNDO_ANHO;
+    		}
+    	} else if (cobertura == Cobertura.TERCEROSLUNAS) {
+    		if (potencia >= INICIO_TRAMO_1 && potencia <= FIN_TRAMO_1) {
+    			precioAux = 600 + (600 * (1 - PORCENTAJE_TRAMO_1));
+    		} else if (potencia > FIN_TRAMO_1) {
+    			precioAux = 600 + (600 * (1 - PORCENTAJE_TRAMO_2));
+    		} else {
+    			precioAux += 600;
+    		}
+    		
+    		if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 1) {
+    			precioAux = precioAux * DESCUENTO_PRIMER_ANHO;
+    		} else if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 2) {
+    			precioAux = precioAux * DESCUENTO_SEGUNDO_ANHO;
+    		}
+    	} else if (cobertura == Cobertura.TODORIESGO) {
+    		if (potencia >= INICIO_TRAMO_1 && potencia <= FIN_TRAMO_1) {
+    			precioAux = 1000 + (1000 * (1 - PORCENTAJE_TRAMO_1));
+    		} else if (potencia > FIN_TRAMO_1) {
+    			precioAux = 1000 + (1000 * (1 - PORCENTAJE_TRAMO_2));
+    		} else {
+    			precioAux += 1000;
+    		}
+    		
+    		if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 1) {
+    			precioAux = precioAux * DESCUENTO_PRIMER_ANHO;
+    		} else if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 2) {
+    			precioAux = precioAux * DESCUENTO_SEGUNDO_ANHO;
+    		}
+    	}
+		
+    	return precioAux;
     }
 
 }

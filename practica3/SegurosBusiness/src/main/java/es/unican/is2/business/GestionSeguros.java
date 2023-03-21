@@ -11,40 +11,52 @@ import es.unican.is2.iman.IInfoSeguros;
 
 public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoSeguros {
 
-	private Cliente cliente;
-	private Seguro seguro;
+	private IClientesDAO clientes;
+	private ISegurosDAO seguros;
 	
 	public GestionSeguros(IClientesDAO daoContribuyentes, ISegurosDAO daoVehiculos) {
-		
+		clientes = daoContribuyentes;
+		seguros = daoVehiculos;
 	}
 
 	public Cliente cliente(String dni) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientes.cliente(dni);
 	}
 
 	public Seguro seguro(String matricula) {
-		// TODO Auto-generated method stub
-		return null;
+		return seguros.seguro(matricula);
 	}
 
 	public Seguro nuevoSeguro(Seguro s, String dni) throws OperacionNoValida {
-		// TODO Auto-generated method stub
+		if ((clientes.cliente(dni) == null) || (seguros.seguro(s.getMatricula()) == null)) {
+			throw new OperacionNoValida("No se ha podido anhadir el nuevo seguro");
+		}
+		seguros.creaSeguro(s);
 		return null;
 	}
 
 	public Seguro bajaSeguro(String matricula, String dni) throws OperacionNoValida {
-		// TODO Auto-generated method stub
+		Cliente c = clientes.cliente(dni);
+		Seguro s = seguros.seguro(matricula);
+		if ((c == null) || (s == null) || (c.getSeguros().contains(s))) {
+			throw new OperacionNoValida("No se ha podido dar de baja al seguro");
+		}
+		seguros.eliminaSeguro(matricula);
 		return null;
 	}
 
-	public Cliente nuevoCliente(Cliente c) {
-		// TODO Auto-generated method stub
+	public Cliente nuevoCliente(Cliente c) throws OperacionNoValida {
+		if (clientes.cliente(c.getDni()) != null) {
+			throw new OperacionNoValida("No se ha podido anhadir el nuevo cliente");
+		}
+		clientes.creaCliente(c);
 		return null;
 	}
 
 	public Cliente bajaCliente(String dni) throws OperacionNoValida {
-		// TODO Auto-generated method stub
+		if ((clientes.cliente(dni) == null) || (clientes.cliente(dni).getSeguros().isEmpty())) {
+			throw new OperacionNoValida("No se ha podido dar de baja al cliente");
+		}
 		return null;
 	}
 }
