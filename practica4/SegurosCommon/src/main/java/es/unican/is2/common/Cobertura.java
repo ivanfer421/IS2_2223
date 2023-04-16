@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlEnum;
  */
 @XmlEnum
 public enum Cobertura {
-	
+
 	TERCEROS, TODORIESGO, TERCEROSLUNAS;
-    
+
 
 }

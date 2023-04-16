@@ -22,28 +22,28 @@ import es.unican.is2.excepciones.OperacionNoValida;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Seguro")
 public class Seguro {
-	
+
 	private static final double PORCENTAJE_TRAMO_1 = 0.95;
 	private static final double PORCENTAJE_TRAMO_2 = 0.80;
 	private static final int INICIO_TRAMO_1= 90;
 	private static final int FIN_TRAMO_1=110;
 	private static final double DESCUENTO_PRIMER_ANHO = 0.8;
 	private static final double DESCUENTO_SEGUNDO_ANHO = 0.9;
-	
-    
+
+
     @XmlAttribute(required = true)
     private int potencia;
-    
+
     @XmlAttribute(required = true)
     private String matricula;
-    
+
     @XmlAttribute(required = true)
     private Cobertura cobertura;
-    
+
     @XmlAttribute(name="fecha", required=true)
     @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate fechaContratacion;
-    
+
     public Seguro(String matricula, int potencia, Cobertura cobertura, LocalDate fecha) throws OperacionNoValida {
     	if (matricula == null || potencia <= 0 || cobertura == null || fecha.getYear() >= LocalDate.now().getYear()) {
     		throw new OperacionNoValida("Parametros para seguro incorrectos");
@@ -55,9 +55,9 @@ public class Seguro {
     }
 
     public Seguro() {}
-    
+
 	/**
-	 * Retorna la matrícula del coche 
+	 * Retorna la matrícula del coche
 	 * asociado al seguro
 	 */
 	public String getMatricula() {
@@ -87,8 +87,8 @@ public class Seguro {
 
 
 	/**
-     * Retorna la potencia del coche asociado 
-     * al seguro. 
+     * Retorna la potencia del coche asociado
+     * al seguro.
      */
     public int getPotencia() {
         return potencia;
@@ -100,7 +100,7 @@ public class Seguro {
     public void setPotencia(int value) {
         this.potencia = value;
     }
-    
+
     /**
      * Retorna el precio del seguro
      * @return
@@ -115,7 +115,7 @@ public class Seguro {
     		} else {
     			precioAux += 400;
     		}
-    		
+
     		if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 1) {
     			precioAux = precioAux * DESCUENTO_PRIMER_ANHO;
     		} else if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 2) {
@@ -129,7 +129,7 @@ public class Seguro {
     		} else {
     			precioAux += 600;
     		}
-    		
+
     		if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 1) {
     			precioAux = precioAux * DESCUENTO_PRIMER_ANHO;
     		} else if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 2) {
@@ -143,14 +143,14 @@ public class Seguro {
     		} else {
     			precioAux += 1000;
     		}
-    		
+
     		if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 1) {
     			precioAux = precioAux * DESCUENTO_PRIMER_ANHO;
     		} else if (Period.between(fechaContratacion, LocalDate.now()).getYears() < 2) {
     			precioAux = precioAux * DESCUENTO_SEGUNDO_ANHO;
     		}
     	}
-		
+
     	return precioAux;
     }
 

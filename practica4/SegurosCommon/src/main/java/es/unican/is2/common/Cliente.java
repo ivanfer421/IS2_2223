@@ -20,53 +20,53 @@ import javax.xml.bind.annotation.XmlType;
 public class Cliente {
 
 	@XmlElement(required=true, name="seguro")
-    private List<Seguro> seguros = new LinkedList<Seguro>();
-    
+    private List<Seguro> seguros = new LinkedList<>();
+
     @XmlAttribute(required = true)
     private String nombre;
-    
+
     @XmlAttribute(required = true)
     private String dni;
-    
+
     @XmlAttribute(required = true)
     private boolean minusvalia;
-    
-    
+
+
     public Cliente(String nombre, String dni, boolean minusvalia) {
     	this.nombre = nombre;
     	this.dni = dni;
     	this.minusvalia = minusvalia;
-    }  
-    
-    public Cliente(){}  
+    }
+
+    public Cliente(){}
 
 	/**
-     * Retorna los seguros del cliente 
+     * Retorna los seguros del cliente
      */
     public List<Seguro> getSeguros() {
         if (seguros == null) {
-        	seguros = new LinkedList<Seguro>();
+        	seguros = new LinkedList<>();
         }
         return seguros;
     }
-    
+
     /**
      * Define el valor de la propiedad seguros
      */
     public void setSeguros(List<Seguro> value) {
 		this.seguros = value;
-		
+
 	}
 
     /**
-     * Retorna el nombre del cliente.   
+     * Retorna el nombre del cliente.
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * Define el valor de la propiedad nombre.  
+     * Define el valor de la propiedad nombre.
      */
     public void setNombre(String value) {
         this.nombre = value;
@@ -85,33 +85,33 @@ public class Cliente {
     public void setDni(String value) {
         this.dni = value;
     }
-    
+
     /**
      * Indica si el cliente es minusválido
      */
     public boolean getMinusvalia() {
     	return minusvalia;
     }
-    
+
     public void setMinusvalia(boolean minus)  {
     	minusvalia = minus;
     }
-    
+
     /**
-     * Calcula el total a pagar por el cliente por 
+     * Calcula el total a pagar por el cliente por
      * todos los seguros a su nombre
      */
     public double totalSeguros() {
     	double precioAux = 0;
     	double precioTotal = 0;
-    	for (int i = 0; i < seguros.size(); i++) {
-    		precioAux = seguros.get(i).precio();
-    		if (minusvalia == true) {
+    	for (Seguro element : seguros) {
+    		precioAux = element.precio();
+    		if (minusvalia) {
     			precioAux = precioAux * 0.75;
     		}
     		precioTotal += precioAux;
     	}
-    	
+
     	return precioTotal;
     }
 

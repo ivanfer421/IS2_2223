@@ -10,21 +10,23 @@ import es.unican.is2.common.Cliente;
 import es.unican.is2.common.Seguro;
 
 public class SegurosDAO implements ISegurosDAO {
-	
+
 	private Aseguradora aseguradora;
-	
+
 	public SegurosDAO() {
 		aseguradora = Aseguradora.creaAseguradora();
 	}
 
 	// Interfaz IVehiculosDAO
-	public Seguro creaSeguro(Seguro s) {	
-		// Por como está implementado el almacenamineto 
+	@Override
+	public Seguro creaSeguro(Seguro s) {
+		// Por como está implementado el almacenamineto
 		// anidado en el xml este metodo no necesita hacer nada.
 		return seguro(s.getMatricula());
 	}
 
-	
+
+	@Override
 	public Seguro eliminaSeguro(String matricula) {
 		aseguradora = Aseguradora.creaAseguradora();
 		for (Cliente c:aseguradora.getClientes()) {
@@ -39,8 +41,9 @@ public class SegurosDAO implements ISegurosDAO {
 		return null;
 	}
 
-	
-	public Seguro actualizaSeguro(Seguro nuevo) {  
+
+	@Override
+	public Seguro actualizaSeguro(Seguro nuevo) {
 		aseguradora = Aseguradora.creaAseguradora();
 		for (Cliente c:aseguradora.getClientes()) {
 			if (c.getSeguros().contains(nuevo)) {
@@ -53,7 +56,8 @@ public class SegurosDAO implements ISegurosDAO {
 		return null;
 	}
 
-	
+
+	@Override
 	public Seguro seguro(String matricula) {
 		aseguradora = Aseguradora.creaAseguradora();
 		for (Cliente c:aseguradora.getClientes()) {
@@ -66,16 +70,17 @@ public class SegurosDAO implements ISegurosDAO {
 		return null;
 	}
 
-	
+
+	@Override
 	public List<Seguro> seguros() {
 		aseguradora = Aseguradora.creaAseguradora();
-		List<Seguro> seguros = new LinkedList<Seguro>();
+		List<Seguro> seguros = new LinkedList<>();
 		for (Cliente c:aseguradora.getClientes()) {
 			seguros.addAll(c.getSeguros());
 		}
 		return seguros;
 	}
 
-	
+
 
 }

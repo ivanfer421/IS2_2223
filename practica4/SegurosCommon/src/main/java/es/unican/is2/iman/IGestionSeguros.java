@@ -8,7 +8,7 @@ import es.unican.is2.excepciones.OperacionNoValida;
  * seguros de la empresa de seguros
  */
 public interface IGestionSeguros {
-	
+
 	/**
 	 * Añade un nuevo seguro al cliente cuyo dni se pasa
 	 * como parámetro.
@@ -19,9 +19,9 @@ public interface IGestionSeguros {
 	 * @throws OperacionNoValida si el seguro ya existe
 	 */
 	public Seguro nuevoSeguro(Seguro s, String dni) throws OperacionNoValida;
-	
+
 	/**
-	 * Elimina el seguro cuya matrícula asociada se pasa como parámetro y 
+	 * Elimina el seguro cuya matrícula asociada se pasa como parámetro y
 	 * que pertenece al cliente cuyo dni se pasa como parámetro
 	 * @param matrícula Identificador del seguro a eliminar
 	 * @param dni DNI del propietario del vehículo

@@ -18,7 +18,7 @@ import es.unican.is2.common.Cliente;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "aseguradora")
 public class Aseguradora {
-	
+
 	// Reemplazar con el Path dónde almacenéis el fichero ayuntamiento.xml
 	public static String DATA_FILE = "C:\\Temp\\aseguradora.xml";
 
@@ -30,11 +30,11 @@ public class Aseguradora {
 	 */
 	public List<Cliente> getClientes() {
 		if (clientes == null) {
-			clientes = new ArrayList<Cliente>();
+			clientes = new ArrayList<>();
 		}
 		return this.clientes;
 	}
-	
+
 
 	/**
 	 * @param contribuyente the contribuyente to set
@@ -70,7 +70,7 @@ public class Aseguradora {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 		return null;
 	}
 }

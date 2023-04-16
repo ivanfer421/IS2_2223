@@ -8,22 +8,22 @@ import es.unican.is2.common.Seguro;
  * de la empresa de seguros
  */
 public interface IInfoSeguros {
-	
+
 	/**
 	 * Retorna el cliente cuyo dni se pasa como parámetro
 	 * @param dni DNI del cliente buscado
 	 * @return El cliente cuyo dni coincide con el parámetro
 	 * 		   null en caso de que no exista
 	 */
-	public Cliente cliente(String dni); 
-	
+	public Cliente cliente(String dni);
+
 	/**
 	 * Retorna el seguro cuya matrícula asociada se pasa como parámetro
 	 * @param matricula Identificador del seguro
 	 * @return El seguro indicado
 	 * 	       null si no existe
 	 */
-	public Seguro seguro(String matricula); 	
-	
+	public Seguro seguro(String matricula);
+
 
 }

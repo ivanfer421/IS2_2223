@@ -11,13 +11,14 @@ import es.unican.is2.common.Cliente;
 
 
 public class ClientesDAO implements IClientesDAO {
-	
+
 	private Aseguradora aseguradora;
-	
+
 	public ClientesDAO() {
 		aseguradora = Aseguradora.creaAseguradora();
 	}
 
+	@Override
 	public Cliente creaCliente(Cliente c) {
 		aseguradora = Aseguradora.creaAseguradora();
 		if (aseguradora.getClientes().contains(c))
@@ -27,6 +28,7 @@ public class ClientesDAO implements IClientesDAO {
 		return cliente(c.getDni());
 	}
 
+	@Override
 	public Cliente cliente(String dni) {
 		aseguradora = Aseguradora.creaAseguradora();
 		for (Cliente c: aseguradora.getClientes()) {
@@ -38,6 +40,7 @@ public class ClientesDAO implements IClientesDAO {
 	}
 
 
+	@Override
 	public Cliente actualizaCliente(Cliente nuevo) {
 		aseguradora = Aseguradora.creaAseguradora();
 		if (aseguradora.getClientes().contains(nuevo)) {
@@ -49,7 +52,8 @@ public class ClientesDAO implements IClientesDAO {
 		return null;
 	}
 
-	
+
+	@Override
 	public Cliente eliminaCliente(String dni) {
 		aseguradora = Aseguradora.creaAseguradora();
 		Cliente c = cliente(dni);
@@ -61,7 +65,8 @@ public class ClientesDAO implements IClientesDAO {
 		return null;
 	}
 
-	
+
+	@Override
 	public List<Cliente> clientes() {
 		aseguradora = Aseguradora.creaAseguradora();
 		return aseguradora.getClientes();

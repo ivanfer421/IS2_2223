@@ -13,12 +13,13 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 
 	private IClientesDAO clientes;
 	private ISegurosDAO seguros;
-	
+
 	public GestionSeguros(IClientesDAO daoContribuyentes, ISegurosDAO daoVehiculos) {
 		clientes = daoContribuyentes;
 		seguros = daoVehiculos;
 	}
 
+	@Override
 	public Cliente cliente(String dni) throws OperacionNoValida {
 		if (clientes.cliente(dni) == null) {
 			throw new OperacionNoValida("No se existe ningun cliente con ese DNI");
@@ -26,6 +27,7 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 		return clientes.cliente(dni);
 	}
 
+	@Override
 	public Seguro seguro(String matricula) throws OperacionNoValida {
 		if (seguros.seguro(matricula) == null) {
 			throw new OperacionNoValida("No se existe ningun seguro con esa matricula");
@@ -33,6 +35,7 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 		return seguros.seguro(matricula);
 	}
 
+	@Override
 	public Seguro nuevoSeguro(Seguro s, String dni) throws OperacionNoValida {
 		if ((clientes.cliente(dni) == null) || (seguros.seguro(s.getMatricula()) == null)) {
 			throw new OperacionNoValida("No se ha podido anhadir el nuevo seguro");
@@ -41,6 +44,7 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 		return null;
 	}
 
+	@Override
 	public Seguro bajaSeguro(String matricula, String dni) throws OperacionNoValida {
 		Cliente c = clientes.cliente(dni);
 		Seguro s = seguros.seguro(matricula);
@@ -51,6 +55,7 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 		return null;
 	}
 
+	@Override
 	public Cliente nuevoCliente(Cliente c) throws OperacionNoValida {
 		if (clientes.cliente(c.getDni()) != null) {
 			throw new OperacionNoValida("No se ha podido anhadir el nuevo cliente");
@@ -59,6 +64,7 @@ public class GestionSeguros implements IGestionClientes, IGestionSeguros, IInfoS
 		return null;
 	}
 
+	@Override
 	public Cliente bajaCliente(String dni) throws OperacionNoValida {
 		if ((clientes.cliente(dni) == null) || (clientes.cliente(dni).getSeguros().isEmpty())) {
 			throw new OperacionNoValida("No se ha podido dar de baja al cliente");

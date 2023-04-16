@@ -2,9 +2,10 @@ package es.unican.is2.gui.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import org.fest.swing.fixture.FrameFixture;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import es.unican.is2.business.GestionSeguros;
 import es.unican.is2.dao.ClientesDAO;
@@ -24,47 +25,47 @@ public class VistaAgenteITest {
 
 		VistaAgente gui = new VistaAgente(negocio, negocio, negocio);
 		demo = new FrameFixture(gui);
-		gui.setVisible(true);	
+		gui.setVisible(true);
 	}
-	
+
 	@AfterEach
 	public void tearDown() {
 		demo.cleanUp();
 	}
-	
+
 	@Test
 	public void test() {
 		// Comprobamos que la interfaz tiene el aspecto deseado
 		demo.button("btnBuscar").requireText("Buscar");
-		
+
 		//  realiza una busqueda de un cliente que existe
 		demo.textBox("txtDNICliente").enterText("12345678S");
-		demo.button("btnBuscar").click();		
-		
+		demo.button("btnBuscar").click();
+
 		demo.textBox("txtNombreCliente").requireText("Andrés Ortega");
 		assertEquals("PLL9597 TODORIESGO", demo.list("txtSeguros").valueAt(0));
 		demo.textBox("txtTotalCliente").requireText("675.0");
-		
-		
+
+
 		demo.textBox("txtDNICliente").deleteText();
 		demo.textBox("txtNombreCliente").deleteText();
-		
-		
-		
-		
+
+
+
+
 		// casos no validos
-		
+
 		// intentea realizar una busqueda de un dni que no existe
-		
+
 		demo.textBox("txtDNICliente").enterText("0000A");
 		demo.button("btnBuscar").click();
-		
+
 		// el campo del nombre deberia estar vacio
 		demo.textBox("txtNombreCliente").requireText("");
-		
-		
-		
-		
+
+
+
+
 		// Sleep para visualizar como se realiza el test
 		try {
 			Thread.sleep(2000);
