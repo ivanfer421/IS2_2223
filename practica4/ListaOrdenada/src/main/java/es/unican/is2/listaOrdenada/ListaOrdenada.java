@@ -1,7 +1,6 @@
 package es.unican.is2.listaOrdenada;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Clase que implementa una lista ordenada en base al orden natural Los
