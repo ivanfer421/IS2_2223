@@ -76,6 +76,7 @@ public class VistaAgente extends JFrame {
 		contentPane.add(listSeguros);
 		listSeguros.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listSeguros.setModel(listModel);
+		listSeguros.setName("txtSeguros");
 		
 		JLabel lblSeguros = new JLabel("Seguros");
 		lblSeguros.setBounds(149, 93, 65, 14);
@@ -109,7 +110,7 @@ public class VistaAgente extends JFrame {
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenaDatosCliente(txtNombreCliente.getText());
+				rellenaDatosCliente(txtDniCliente.getText());
 			}
 		});
 		btnBuscar.setBounds(21, 122, 89, 23);

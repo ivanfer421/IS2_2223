@@ -34,17 +34,17 @@ public class SeguroTest {
 	
 	@BeforeEach
 	public void setUp() throws Exception { 
-		seguro1 = new Seguro("1111AAA", 120, Cobertura.TERCEROS, LocalDate.now().minusMonths(5));
-		seguro2 = new Seguro("2222BBB", 120, Cobertura.TERCEROSLUNAS, LocalDate.now().minusMonths(5));
-		seguro3 = new Seguro("3333CCC", 120, Cobertura.TODORIESGO, LocalDate.now().minusMonths(5));
+		seguro1 = new Seguro("1111AAA", 150, Cobertura.TERCEROS, LocalDate.now().minusMonths(5));
+		seguro2 = new Seguro("2222BBB", 180, Cobertura.TERCEROSLUNAS, LocalDate.now().minusMonths(5));
+		seguro3 = new Seguro("3333CCC", 200, Cobertura.TODORIESGO, LocalDate.now().minusMonths(5));
 		
-		seguro4 = new Seguro("4444DDD", 100, Cobertura.TERCEROS, LocalDate.now().minusYears(1));
+		seguro4 = new Seguro("4444DDD", 110, Cobertura.TERCEROS, LocalDate.now().minusYears(1));
 		seguro5 = new Seguro("5555EEE", 100, Cobertura.TERCEROSLUNAS, LocalDate.now().minusYears(1));
 		seguro6 = new Seguro("6666FFF", 100, Cobertura.TODORIESGO, LocalDate.now().minusYears(1));
 		
 		seguro7 = new Seguro("7777GGG", 80, Cobertura.TERCEROS, LocalDate.now().minusYears(2));
-		seguro8 = new Seguro("8888HHH", 80, Cobertura.TERCEROSLUNAS, LocalDate.now().minusYears(2));
-		seguro9 = new Seguro("9999JJJ", 80, Cobertura.TODORIESGO, LocalDate.now().minusYears(2));
+		seguro8 = new Seguro("8888HHH", 70, Cobertura.TERCEROSLUNAS, LocalDate.now().minusYears(2));
+		seguro9 = new Seguro("9999JJJ", 60, Cobertura.TODORIESGO, LocalDate.now().minusYears(2));
 	}
 	
 	
@@ -53,15 +53,15 @@ public class SeguroTest {
 		// casos validos
 		
 		assertEquals("1111AAA", seguro1.getMatricula());
-		assertTrue(120 == seguro1.getPotencia());
+		assertTrue(150 == seguro1.getPotencia());
 		assertTrue(Cobertura.TERCEROS == seguro1.getCobertura()); 
 		
 		assertEquals("2222BBB", seguro2.getMatricula());
-		assertTrue(120 == seguro2.getPotencia());
+		assertTrue(180 == seguro2.getPotencia());
 		assertTrue(Cobertura.TERCEROSLUNAS == seguro2.getCobertura()); 
 		
 		assertEquals("3333CCC", seguro3.getMatricula());
-		assertTrue(120 == seguro3.getPotencia());
+		assertTrue(200 == seguro3.getPotencia());
 		assertTrue(Cobertura.TODORIESGO == seguro3.getCobertura()); 
 		
 		

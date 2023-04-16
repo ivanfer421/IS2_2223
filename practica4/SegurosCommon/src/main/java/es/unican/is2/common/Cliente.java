@@ -32,6 +32,12 @@ public class Cliente {
     private boolean minusvalia;
     
     
+    public Cliente(String nombre, String dni, boolean minusvalia) {
+    	this.nombre = nombre;
+    	this.dni = dni;
+    	this.minusvalia = minusvalia;
+    }  
+    
     public Cliente(){}  
 
 	/**
