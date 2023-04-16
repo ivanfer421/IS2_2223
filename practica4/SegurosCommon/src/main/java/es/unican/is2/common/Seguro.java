@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import es.unican.is2.excepciones.OperacionNoValida;
+
 /**
  * Clase que representa un seguro de coche.
  * Un seguro se identifica por la matrícula
@@ -42,8 +44,18 @@ public class Seguro {
     @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate fechaContratacion;
     
-    public Seguro() {}
+    public Seguro(String matricula, int potencia, Cobertura cobertura, LocalDate fecha) throws OperacionNoValida {
+    	if (matricula == null || potencia <= 0 || cobertura == null || fecha.getYear() >= LocalDate.now().getYear()) {
+    		throw new OperacionNoValida("Parametros para seguro incorrectos");
+    	}
+    	this.matricula = matricula;
+    	this.potencia = potencia;
+    	this.cobertura = cobertura;
+    	this.fechaContratacion = fecha;
+    }
 
+    public Seguro() {}
+    
 	/**
 	 * Retorna la matrícula del coche 
 	 * asociado al seguro
