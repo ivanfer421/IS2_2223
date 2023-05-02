@@ -3,38 +3,38 @@ package es.unican.is2.gestionBanco;
 import java.time.LocalDateTime;
 
 public class Movimiento {
-	private String mConcepto;
-	private LocalDateTime mFecha;
-	private double mImporte;
+	private String concepto;
+	private LocalDateTime fecha;
+	private double importe;
 
 	// WMC+1
-	public double getI() {
-		return mImporte;
+	public double getImporte() {
+		return importe;
 	}
 
 	// WMC+1
-	public void setI(double newMImporte) {
-		mImporte = newMImporte;
+	public void setImporte(double newImporte) {
+		importe = newImporte;
 	}
 	
 	// WMC+1
-	public String getC() {
-		return mConcepto;
+	public String getConcepto() {
+		return concepto;
 	}
 
 	// WMC+1
-	public void setC(String newMConcepto) {
-		mConcepto = newMConcepto;
+	public void setConcepto(String newConcepto) {
+		concepto = newConcepto;
 	}
 
 	// WMC+1
-	public LocalDateTime getF() {
-		return mFecha;
+	public LocalDateTime getFecha() {
+		return fecha;
 	}
 
 	// WMC+1
-	public void setF(LocalDateTime newMFecha) {
-		mFecha = newMFecha;
+	public void setFecha(LocalDateTime newFecha) {
+		fecha = newFecha;
 	}
 	
 }

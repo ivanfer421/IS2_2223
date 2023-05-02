@@ -7,100 +7,89 @@ import java.util.List;
 
 public class CuentaAhorro extends Cuenta {
 
-	private List<Movimiento> mMovimientos;
-	private LocalDate mFechaDeCaducidadTarjetaDebito;
-	private LocalDate mFechaDeCaducidadTarjetaCredito;
+	private List<Movimiento> movimientos;
 	private double limiteDebito;
 
 	// WMC+1 
 	public CuentaAhorro(String numCuenta, LocalDate date, LocalDate date2) throws datoErroneoException {
-		super(numCuenta);
-		this.mFechaDeCaducidadTarjetaDebito = date;
-		this.mFechaDeCaducidadTarjetaCredito = date2;
-		mMovimientos = new LinkedList<Movimiento>();
+		super(numCuenta, date, date2);
+		movimientos = new LinkedList<Movimiento>();
 		limiteDebito = 1000;
 	}
 
 	// WMC+1 
 	public void ingresar(double x) throws datoErroneoException {
-		if (x <= 0)		// WMC+1 	CCog+1
-			throw new datoErroneoException("No se puede ingresar una cantidad negativa");
-		Movimiento m = new Movimiento();
-		LocalDateTime now = LocalDateTime.now();
-		m.setF(now);
-		m.setC("Ingreso en efectivo");
-		m.setI(x);
-		this.mMovimientos.add(m);
+		ingresaSaldoAux(null, x);
 	}
 
 	// WMC+1 
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException {
-		if (x <= 0)		// WMC+1 	CCog+1
-			throw new datoErroneoException("No se puede retirar una cantidad negativa");
-		if (getSaldo() < x)		// WMC+1 	CCog+1
-			throw new saldoInsuficienteException("Saldo insuficiente");
-		Movimiento m = new Movimiento();
-		LocalDateTime now = LocalDateTime.now();
-		m.setF(now);
-		m.setC("Retirada de efectivo");
-		m.setI(-x);
-		this.mMovimientos.add(m);
+		retiraSaldoAux(null, x);
 	}
 
 	// WMC+1 
 	public void ingresar(String concepto, double x) throws datoErroneoException {
+		ingresaSaldoAux(concepto, x);
+	}
+	
+	// WMC+1 
+	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException {
+		retiraSaldoAux(concepto, x);
+	}
+		
+	// WMC+1 
+	public void ingresaSaldoAux(String concepto, double x) throws datoErroneoException {
 		if (x <= 0)		// WMC+1 	CCog+1
 			throw new datoErroneoException("No se puede ingresar una cantidad negativa");
 		Movimiento m = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
-		m.setF(now);
-		m.setC(concepto);
-		m.setI(x);
-		this.mMovimientos.add(m);
+		m.setFecha(now);
+		if (concepto == null) {		// WMC+1	CCog+1
+			m.setConcepto("Ingreso en efectivo");
+		} else {
+			m.setConcepto(concepto);
+		}
+		m.setImporte(x);
+		this.movimientos.add(m);
 	}
-
-	// WMC+1 
-	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException {
+	
+	// WMC+1
+	public void retiraSaldoAux(String concepto, double x) throws saldoInsuficienteException, datoErroneoException {
 		if (getSaldo() < x)		// WMC+1 	CCog+1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		if (x <= 0)		// WMC+1 	CCog+1
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 		Movimiento m = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
-		m.setF(now);
-		m.setC(concepto);
-		m.setI(-x);
-		this.mMovimientos.add(m);
+		m.setFecha(now);
+		if (concepto == null) { // WMC+1 	CCog+1
+			m.setConcepto("Retirada de efectivo");
+		} else {
+			m.setConcepto(concepto);
+		}
+		m.setImporte(-x);
+		this.movimientos.add(m);
 	}
+	
 
 	// WMC+1 
 	public double getSaldo() {
 		double r = 0.0;
-		for (int i = 0; i < this.mMovimientos.size(); i++) {	// WMC+1 	CCog+1
-			Movimiento m = (Movimiento) mMovimientos.get(i);
-			r += m.getI();
+		for (int i = 0; i < this.movimientos.size(); i++) {	// WMC+1 	CCog+1
+			Movimiento m = (Movimiento) movimientos.get(i);
+			r += m.getImporte();
 		}
 		return r;
 	}
 
 	// WMC+1 
 	public void addMovimiento(Movimiento m) {
-		mMovimientos.add(m);
+		movimientos.add(m);
 	}
 
 	// WMC+1 
 	public List<Movimiento> getMovimientos() {
-		return mMovimientos;
-	}
-
-	// WMC+1 
-	public LocalDate getCaducidadDebito() {
-		return this.mFechaDeCaducidadTarjetaDebito;
-	}
-
-	// WMC+1 
-	public LocalDate getCaducidadCredito() {
-		return this.mFechaDeCaducidadTarjetaCredito;
+		return movimientos;
 	}
 
 	// WMC+1 

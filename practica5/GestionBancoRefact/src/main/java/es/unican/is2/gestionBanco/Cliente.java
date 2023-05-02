@@ -6,9 +6,7 @@ import java.util.List;
 public class Cliente {
 	
 	public String nombre;
-	public String calle;
-	public String zip;
-	public String localidad;
+	public Direccion direccion;
 	public String telefono;
 	public String dni;
 	
@@ -18,18 +16,18 @@ public class Cliente {
  	public Cliente(String titular, String calle, String zip, String localidad, 
  			String telefono, String dni) {  
 		this.nombre = titular;
-		this.calle = calle;
-		this.zip = zip;
-		this.localidad = localidad;
+		this.direccion.calle = calle;
+		this.direccion.zip = zip;
+		this.direccion.localidad = localidad;
 		this.telefono = telefono;
 		this.dni = dni;
 	}
 	
  	// WMC + 1
 	public void cambiaDireccion(String calle, String zip, String localidad) {
-		this.calle = calle;
-		this.zip = zip;
-		this.localidad = localidad;
+		this.direccion.calle = calle;
+		this.direccion.zip = zip;
+		this.direccion.localidad = localidad;
 	}
 	
 	// WMC + 1
@@ -44,12 +42,19 @@ public class Cliente {
 			if (c instanceof CuentaAhorro) { // WMC + 1		CCog + 2
 				total += ((CuentaAhorro) c).getSaldo();
 			} else if (c instanceof CuentaValores)  { // WMC + 1	CCog + 2
-				for (Valor v: ((CuentaValores) c).getValores()) { // WMC + 1	CCog + 3
-					total += v.getCotizacion()*v.getNumValores();
-				}
+				calculaSaldoCuenta(c);
 			}
 		}
 		return total;
+	}
+	
+	// WMC + 1
+	private double calculaSaldoCuenta(Cuenta c) {
+		double t = 0.0;
+		for (Valor v: ((CuentaValores) c).getValores()) { // WMC + 1	CCog + 1
+			t += v.getCotizacion()*v.getNumValores();
+		}
+		return t;
 	}
 	
 	// WMC + 1
@@ -59,17 +64,17 @@ public class Cliente {
 
 	// WMC + 1
 	public String getCalle() {
-		return calle;
+		return direccion.calle;
 	}
 
 	// WMC + 1
 	public String getZip() {
-		return zip;
+		return direccion.zip;
 	}
 
 	// WMC + 1
 	public String getLocalidad() {
-		return localidad;
+		return direccion.localidad;
 	}
 
 	// WMC + 1

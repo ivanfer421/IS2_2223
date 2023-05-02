@@ -2,14 +2,14 @@ package es.unican.is2.gestionBanco;
 
 public abstract class Tarjeta {
 	
-	protected String mNumero, mTitular;		
-	protected CuentaAhorro mCuentaAsociada;
+	protected String numero, titular;		
+	protected CuentaAhorro cuentaAsociada;
 
 	// WMC+1
 	public Tarjeta(String numero, String titular, CuentaAhorro c) {
-		mNumero = numero;
-		mTitular = titular;
-		mCuentaAsociada = c;
+		this.numero = numero;
+		this.titular = titular;
+		this.cuentaAsociada = c;
 	}
 
 	/**
@@ -30,4 +30,9 @@ public abstract class Tarjeta {
 	public abstract void pagoEnEstablecimiento(String datos, double x)		// WMC+1
 			throws saldoInsuficienteException, datoErroneoException;
 	
+	
+	// WMC + 1
+	public Cuenta getCuentaAsociada() {
+		return cuentaAsociada;
+	}
 }

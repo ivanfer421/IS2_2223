@@ -20,8 +20,8 @@ public class CuentaValores extends Cuenta {
 	
 	// WMC+1
 	public boolean anhadeValor(Valor valor) {
-		for (Valor v:valores) {		// CCog+1
-			if (v.getEntidad().equals(valor.getEntidad()))		// CCog+2
+		for (Valor v:valores) {		// WMC+1 CCog+1
+			if (v.getEntidad().equals(valor.getEntidad()))		// WMC+1 CCog+2
 				return false;
 		}
 		valores.add(valor);

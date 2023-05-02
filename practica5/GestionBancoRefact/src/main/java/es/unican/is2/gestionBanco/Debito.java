@@ -17,7 +17,7 @@ public class Debito extends Tarjeta {
 		if (saldoDiarioDisponible<x) {		// WMC + 1	CCog+1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		}
-		this.mCuentaAsociada.retirar("Retirada en cajero automático", x);
+		this.cuentaAsociada.retirar("Retirada en cajero automático", x);
 		saldoDiarioDisponible-=x;
 	}
 	
@@ -27,25 +27,19 @@ public class Debito extends Tarjeta {
 		if (saldoDiarioDisponible<x) {		// WMC + 1	CCog+1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		}
-		this.mCuentaAsociada.retirar("Compra en : " + datos, x);
+		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible-=x;
 	}
 	
 	// WMC + 1
 	public LocalDate getCaducidadDebito() {
-		return this.mCuentaAsociada.getCaducidadDebito();
+		return this.cuentaAsociada.getCaducidadDebito();
 	}
 	
 	/**
 	 * Método invocado automáticamente a las 00:00 de cada día
 	 */
 	public void restableceSaldo() {		// WMC + 1
-		saldoDiarioDisponible = mCuentaAsociada.getLimiteDebito();
+		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito();
 	}
-	
-	// WMC + 1
-	public CuentaAhorro getCuentaAsociada() {
-		return mCuentaAsociada;
-	}
-
 }
