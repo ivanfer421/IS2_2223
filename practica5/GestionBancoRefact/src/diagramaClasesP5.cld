@@ -48,8 +48,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>288</x>
-        <y>285</y>
+        <x>326</x>
+        <y>331</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>
@@ -147,8 +147,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>235</x>
-        <y>155</y>
+        <x>319</x>
+        <y>212</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>
@@ -254,8 +254,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>176</x>
-        <y>789</y>
+        <x>264</x>
+        <y>747</y>
       </constraint>
       <sourceConnections>
         <net.java.amateras.uml.classdiagram.model.GeneralizationModel>
@@ -295,8 +295,8 @@
             <constraint>
               <height>-1</height>
               <width>-1</width>
-              <x>626</x>
-              <y>193</y>
+              <x>638</x>
+              <y>302</y>
             </constraint>
             <sourceConnections/>
             <targetConnections>
@@ -336,8 +336,8 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-                    <x>712</x>
-                    <y>755</y>
+                    <x>720</x>
+                    <y>697</y>
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.uml.classdiagram.model.GeneralizationModel>
@@ -410,8 +410,8 @@
                               <constraint>
                                 <height>-1</height>
                                 <width>-1</width>
-                                <x>1446</x>
-                                <y>394</y>
+                                <x>1350</x>
+                                <y>387</y>
                               </constraint>
                               <sourceConnections/>
                               <targetConnections>
@@ -921,8 +921,8 @@
                               <constraint>
                                 <height>-1</height>
                                 <width>-1</width>
-                                <x>1232</x>
-                                <y>955</y>
+                                <x>1188</x>
+                                <y>857</y>
                               </constraint>
                               <sourceConnections>
                                 <net.java.amateras.uml.classdiagram.model.GeneralizationModel reference="../../.."/>
@@ -964,8 +964,8 @@
                                     <constraint>
                                       <height>-1</height>
                                       <width>-1</width>
-                                      <x>1537</x>
-                                      <y>884</y>
+                                      <x>1453</x>
+                                      <y>781</y>
                                     </constraint>
                                     <sourceConnections>
                                       <net.java.amateras.uml.classdiagram.model.AggregationModel reference="../../.."/>
@@ -1585,8 +1585,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>246</x>
-                          <y>445</y>
+                          <x>352</x>
+                          <y>467</y>
                         </constraint>
                         <sourceConnections>
                           <net.java.amateras.uml.classdiagram.model.AggregationModel>
@@ -2360,8 +2360,8 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-                    <x>1122</x>
-                    <y>165</y>
+                    <x>1011</x>
+                    <y>299</y>
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.uml.classdiagram.model.GeneralizationModel reference="../../.."/>
